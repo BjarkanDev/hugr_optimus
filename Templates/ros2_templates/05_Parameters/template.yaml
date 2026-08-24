@@ -1,0 +1,9 @@
+# Top-level key: Must match the exact node name (including namespace if applicable)
+/my_node_namespace/my_node_name:
+  # Required ROS2 parameter namespace marker (note the double underscore)
+  ros__parameters:
+    my_integer: 42             # Integer type
+    my_double: 3.14            # Double/Float type (always include decimal point)
+    my_string: "default_value" # String type (always wrap in quotes)
+    my_boolean: true           # Boolean type (use lowercase 'true' or 'false')
+    my_array: [1.0, 2.0, 3.0]  # Array/List type (elements must share the same type)
