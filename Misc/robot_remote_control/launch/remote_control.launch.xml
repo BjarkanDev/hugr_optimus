@@ -1,0 +1,30 @@
+<launch>
+  <!--
+    Xbox controller jogging. Runs on the laptop, alongside the bringup that
+    is already talking to the Pi. Start it last:
+
+      Pi      ros2 launch bringup robot_hardware.launch.xml
+      laptop  ros2 launch robot_bringup real_robot.launch.xml
+      laptop  ros2 launch robot_remote_control remote_control.launch.xml
+
+    Both nodes read the same file, each picking up its own section. The node
+    names below MUST match the top-level keys in joystick_config.yaml or the
+    parameters are silently not applied.
+  -->
+
+  <arg name="config"
+       default="$(find-pkg-share robot_remote_control)/config/joystick_config.yaml"/>
+
+  <!-- game_controller_node, not joy_node: it goes through SDL's
+       GameController mapping, so button 0 is A and axis 0 is the left stick
+       on any recognised pad. joy_node would expose raw joydev indices. -->
+  <node pkg="joy" exec="game_controller_node" name="game_controller_node"
+        output="screen">
+    <param from="$(var config)"/>
+  </node>
+
+  <node pkg="robot_remote_control" exec="remote_control_node"
+        name="remote_control_node" output="screen">
+    <param from="$(var config)"/>
+  </node>
+</launch>

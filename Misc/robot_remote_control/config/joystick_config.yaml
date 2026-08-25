@@ -1,0 +1,243 @@
+# =============================================================================
+# robot_remote_control -- joystick configuration
+# =============================================================================
+#
+# Xbox Series X controller -> joint-space jogging of the DOFBOT arm.
+#
+# Everything in this file is in URDF units:
+#   servo1..servo5              radians, radians per second
+#   gripper_left_finger_joint   metres, metres per second
+#
+# Nothing here knows about servo degrees, I2C counts or the gripper curve.
+# That conversion already happens further down, in robot_hardware.
+#
+#
+# -----------------------------------------------------------------------------
+# FLOATS MUST HAVE A DECIMAL POINT
+# -----------------------------------------------------------------------------
+#
+# 1 is an int and 1.0 is a float. ROS 2 type-checks parameters against the
+# declared default, so an int where a float is expected makes the node refuse
+# to start. Same trap as joint_limits.yaml.
+#
+#
+# -----------------------------------------------------------------------------
+# THE CONTROLLER LAYOUT
+# -----------------------------------------------------------------------------
+#
+# game_controller_node reports the pad through SDL's GameController API.
+# `joy_enumerate_devices` showed Mapped: true, which means SDL recognised the
+# pad and applied a known profile. The layout below is therefore fixed and
+# will not shift between kernels, drivers or machines.
+#
+# This is why we use game_controller_node and not joy_node. joy_node exposes
+# raw joydev indices, which do move around.
+#
+#   AXES -- float, -1.0 to 1.0, 6 of them
+#     0   left stick   X    left -1.0   right +1.0
+#     1   left stick   Y    up   -1.0   down  +1.0
+#     2   right stick  X
+#     3   right stick  Y
+#     4   LT trigger        released 0.0, pressed 1.0
+#     5   RT trigger
+#
+#   BUTTONS -- int, 0 or 1, 21 of them
+#     0  A          1  B          2  X          3  Y
+#     4  View       6  Menu       8  Xbox
+#     9  LB        10  RB
+#    11  D-pad up  12  D-pad down 13  D-pad left 14  D-pad right
+#
+#   Note the D-pad is BUTTONS here, not an axis. A joint driven by the D-pad
+#   therefore uses plus_button/minus_button instead of axis.
+#
+#   Sticks rest at exactly 0.0 because SDL applies its own 0.05 deadzone.
+#   No extra deadzone is needed in our node.
+#
+#
+# -----------------------------------------------------------------------------
+# HOW A JOINT IS DRIVEN
+# -----------------------------------------------------------------------------
+#
+# Each joint gets a velocity command from the pad, which is integrated into a
+# position every cycle:
+#
+#     q += velocity * scale * dt        then clamped to [lower, upper]
+#
+# The velocity comes from ONE of two sources. Give a joint either an axis or
+# a button pair, not both:
+#
+#   axis          index into axes[]. Proportional: half deflection, half
+#                 speed. Use for sticks and triggers.
+#
+#   plus_button   two indices into buttons[]. On/off: full speed or nothing.
+#   minus_button  Use for the D-pad and the shoulder buttons.
+#
+# Fields every joint needs:
+#
+#   scale         speed at full deflection. rad/s for the arm, m/s for the
+#                 gripper. NEGATE THIS TO INVERT A DIRECTION -- there is no
+#                 separate invert flag. Ceiling is 1.0, see below.
+#
+#   lower, upper  travel limits. Copied from the URDF, see below.
+#
+#
+# -----------------------------------------------------------------------------
+# WHERE THESE NUMBERS COME FROM -- AND THE CEILING ON scale
+# -----------------------------------------------------------------------------
+#
+# The URDF is the source of truth. Read off main.xacro and gripper.xacro:
+#
+#   joint                        lower    upper    velocity   declared in
+#   ---------------------------------------------------------------------
+#   servo1                        -1.5     1.5       1.0      main.xacro
+#   servo2                        -1.5     1.5       1.0      main.xacro
+#   servo3                        -1.5     1.5       1.0      main.xacro
+#   servo4                        -1.5     1.5       1.0      main.xacro
+#   servo5                        -1.5     1.5       1.0      main.xacro
+#   gripper_left_finger_joint      0.0     0.032     1.0      gripper.xacro
+#
+# So: lower/upper below are exactly the URDF values.
+#
+# The velocity column is NOT. 1.0 was written into the xacro by hand and has
+# never been measured against the servos -- it is a placeholder that happens
+# to appear in three files (main.xacro, joint_limits.yaml, and here). The
+# real ceiling is unknown and is probably not 1.0, and probably not the same
+# for every joint: servo2 and servo3 carry the arm's own mass, servo1 and
+# servo5 do not, so the shoulder will saturate first.
+#
+# Until it is measured, treat scale as a number you raise carefully.
+#
+# Measuring it, with sweep_test.py, which nearly does this already:
+#   a cosine of amplitude A over duration T peaks at 2*pi*A/T rad/s.
+#   Defaults 0.4 rad over 4 s give 0.63 rad/s. Shorten --duration step by
+#   step and watch the joint. While the servo keeps up the motion looks like
+#   a smooth cosine; once it saturates it turns into a straight ramp with an
+#   abrupt stop at each end. That transition is the ceiling for that joint.
+#   Note it depends on move_ms in robot_hardware, which sets how long the
+#   servo is given per setpoint.
+#
+# Two reasons this matters more here than during MoveIt execution:
+#
+#   1. Nothing enforces it on this path. MoveIt applies
+#      default_velocity_scaling_factor 0.1 from joint_limits.yaml to planned
+#      trajectories, so planned motion runs at a tenth of the declared limit.
+#      Jogging bypasses the planner entirely -- the trajectory controller
+#      interpolates whatever setpoint arrives and does not check it against
+#      the URDF. The number below IS the limit on this path.
+#
+#   2. Exceeding it does not throw an error, it degrades. The servo cannot
+#      reach the setpoint within move_ms, so it saturates and lags. The arm
+#      keeps moving but no longer tracks the stick, and /joint_states keeps
+#      reporting the commanded position because robot_hardware runs open
+#      loop. There is no symptom to read except the arm's behaviour.
+#
+# The gripper: 0.02 m/s crosses the full 0.032 m travel in about
+# 1.6 s, which is a usable button hold. Its mechanical limit is the servo's,
+# not something the URDF pins down, so treat 0.05 m/s as a sane upper bound
+# rather than a derived one.
+#
+# If you tighten a limit in the xacro files, tighten it here too. Nothing
+# checks that these agree.
+#
+#
+# -----------------------------------------------------------------------------
+# CHANGING THE MAPPING
+# -----------------------------------------------------------------------------
+#
+# Everything below is meant to be edited. Relaunch is enough, no rebuild.
+#
+#   arm moves the wrong way        negate that joint's scale
+#   too twitchy                    lower scale, or raise lookahead
+#   visible stepping               lower lookahead
+#   want a different stick         change axis, using the table above
+#   want the D-pad on another joint  swap plus_button/minus_button over
+#
+# =============================================================================
+
+
+game_controller_node:
+  ros__parameters:
+    device_id: 0
+    deadzone: 0.05
+    # game_controller_node only publishes when something changes. Without a
+    # repeat rate a stick held steady produces no messages at all, which
+    # remote_control_node cannot tell apart from a dead pad. Keep
+    # 1/autorepeat_rate comfortably below joy_timeout.
+    autorepeat_rate: 20.0
+
+
+remote_control_node:
+  ros__parameters:
+
+    # --- cycle -------------------------------------------------------------
+
+    # Match controller_manager update_rate in ros2_controllers.yaml. Going
+    # above it only produces messages the controller overwrites unread.
+    rate_hz: 50.0
+
+    # time_from_start on each published point, as a multiple of the cycle
+    # period. This is the window the trajectory controller has to interpolate
+    # into.
+    #   low  -> crisp, but stepping becomes visible
+    #   high -> smooth, but the arm lags behind a stick reversal
+    # Useful range is roughly 1.5 to 3.0.
+    lookahead: 2.0
+
+    # No /joy message within this many seconds stops all motion. Covers an
+    # unplugged pad and a dropped network link alike.
+    joy_timeout: 0.25
+
+    # Held for anything to move at all. A is button 0.
+    deadman_button: 0
+
+    # --- controllers -------------------------------------------------------
+
+    arm_controller: main_controller
+    gripper_controller: gripper_controller
+
+    arm_joints: [servo1, servo2, servo3, servo4, servo5]
+    gripper_joint: gripper_left_finger_joint
+
+    # --- arm ---------------------------------------------------------------
+
+    servo1:                     # base rotation, about Z
+      axis: 0                   # left stick X
+      scale: 0.8                # rad/s, ceiling unmeasured
+      lower: -1.5
+      upper: 1.5
+
+    servo2:                     # shoulder, tilts about Y
+      axis: 1                   # left stick Y
+      scale: 0.8                # rad/s, ceiling unmeasured
+      lower: -1.5
+      upper: 1.5
+
+    servo3:                     # elbow, tilts about Y
+      axis: 3                   # right stick Y
+      scale: 0.8                # rad/s, ceiling unmeasured
+      lower: -1.5
+      upper: 1.5
+
+    servo4:                     # wrist pitch, tilts about Y
+      axis: 2                   # right stick X
+      scale: 0.8                # rad/s, ceiling unmeasured
+      lower: -1.5
+      upper: 1.5
+
+    servo5:                     # wrist roll, about Z
+      plus_button: 14           # D-pad right
+      minus_button: 13          # D-pad left
+      scale: 0.8                # rad/s, ceiling unmeasured
+      lower: -1.5
+      upper: 1.5
+
+    # --- gripper -----------------------------------------------------------
+
+    # Direction is not obvious: q = 0.0 is OPEN (6.4 cm gap) and q = 0.032 is
+    # CLOSED (0 cm). Increasing q closes the fingers, so RB (plus) closes.
+    gripper_left_finger_joint:
+      plus_button: 10           # RB, closes
+      minus_button: 9           # LB, opens
+      scale: 0.02               # m/s
+      lower: 0.0
+      upper: 0.032
