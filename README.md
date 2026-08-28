@@ -59,8 +59,17 @@ Congrats! You now have a local fork of the main repository, ready to do with as 
 #### Step 3 - Clone the repository
 
 To interact with the code on your local computer you must clone your fork to your computer. Cloning is typically done in two ways, through `HTTPS` or via `SSH`. 
+![Click the code dropdown button](figures/clone_step1.png)
 
+Click the code dropdown button.
 
+![You may copy from either HTTPS](figures/clone_step2.png)
+
+You may copy from either HTTPS...
+
+![Or SSH](figures/clone_step3.png)
+
+Or from SSH. If you're going to utilize SSH, make sure to add your SSH key to your GitHub profile with read/write permissions. To get more familiar with SSH, learn how to generate a key and add it to your profile, follow [this link](https://docs.github.com/en/authentication/connecting-to-github-with-ssh). 
 ### Rules
 
 ---
