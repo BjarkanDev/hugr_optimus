@@ -38,7 +38,17 @@ Want to know more about what Docker is and how it works? Check out [this link](h
 
 #### Step 2 - Fork the repository
 
-In order to make contributions towards the main code repository
+In order to make contributions towards the main code repository you will need to fork the main repository to your local GitHub user. In this way, when you want to merge your code with the main repository you will create a Pull Request (PR), which in turn will automatically triger a Continous Integration (CI) pipeline which runs various tests to verify your code is valid and able to be merged without causing major issues. 
+
+To perform the fork, follow the steps below:
+
+![Start by clicking on the dropdown next to the fork button](figures/for_step1.png)
+
+
+![Click the create new fork button](figures/for_step1.png)
+
+
+![Leave everything as standard and click create](figures/for_step1.png)
 
 
 ### Rules
