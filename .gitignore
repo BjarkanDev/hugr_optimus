@@ -1,3 +1,7 @@
+# ROS 2-generated files
 **/install/
 **/log/
 **/build/
+
+# VS Code settings
+/.vscode/
