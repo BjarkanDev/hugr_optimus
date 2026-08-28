@@ -1,4 +1,4 @@
-# Building optimus_ws
+# How to build optimus_ws
 
 Remember to **ALWAYS** *colcon build* in root-workspace `~/hugr_optimus/optimus_ws`.
 
