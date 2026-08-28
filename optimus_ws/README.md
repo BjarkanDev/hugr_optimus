@@ -8,13 +8,19 @@ First source ROS2: In your terminal, run.
 source /opt/ros/jazzy/setup.bash
 ```
 
-After ROS2 is sourced, source the workspace.
+Build the entire project.
+
+```bash
+colcon build
+```
+
+After ROS2 is sourced and workspace is built, source the workspace.
 
 ```bash
 source install/setup.bash
 ```
 
-You can also run specific packages with.
+You can also build a specific package with.
 
 ```bash
 colcon build --packages-select <package-name>
