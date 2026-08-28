@@ -1,6 +1,48 @@
 # hugr_optimus
+
 The official repository for the SeaBotics Hugr Optimus. This repo is the succesor to the Hugr Primus repository for legacy code.
 
 The Hugr Optimus is a fully autonomous surface vessel, i.e. Autonomous Boat, built by students to compete in national and international competitions.
 
 We are from the University of Agder, and open for all students in Agder.
+
+## Contributions
+
+In order to contribute to this repository, please read the information and guidelines below.
+
+---
+
+### Tech Stack
+
+`hugr_optimus` is a repository that is owned, maintained and managed by the SeaBotics Student Association. The project tech stack mainly revolves around a few specific frameworks and languages, but component work may require more specialized and nuanced languages. In order to get started with development a few basics must be in order:
+
+- Ubuntu 24.04 LTS
+- ROS 2 Jazzy
+- C/C++ & Python
+
+In addition to these basics you may find downloading an IDE to be preferable for development through the project Docker container, preferably Visual Studio Code (VSC) due to its Docker integration. Hardware and Software technology and interfacing overviews are located in `dokumentasjon/`. You may follow the setup steps below in order to set up your computer. 
+
+### Setup
+
+In order to run, test and modify the code we've created a docker environment which you may run whenever you are going to access the repository code on your computer.
+
+#### Step 1 - Download Docker
+
+You may download Docker natively on your computer for your specific Operating System (OS) by following the links below:
+
+- [Docker Desktop - Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
+- [Docker Desktop - Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+- [Docker Desktop - Linux](https://docs.docker.com/desktop/setup/install/linux/)
+
+Want to know more about what Docker is and how it works? Check out [this link](https://docs.docker.com/get-started/docker-overview/).
+
+#### Step 2 - Fork the repository
+
+In order to make contributions towards the main code repository
+
+
+### Rules
+
+---
+
+> Maintained by SeaBotics Student Association
