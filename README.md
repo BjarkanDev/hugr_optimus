@@ -42,13 +42,13 @@ In order to make contributions towards the main code repository you will need to
 
 To perform the fork, follow the steps below:
 
-![Start by clicking on the dropdown next to the fork button](figures/for_step1.png)
+![Start by clicking on the dropdown next to the fork button](figures/fork_step1.png)
 
 
-![Click the create new fork button](figures/for_step1.png)
+![Click the create new fork button](figures/fork_step2.png)
 
 
-![Leave everything as standard and click create](figures/for_step1.png)
+![Leave everything as standard and click create](figures/fork_step3.png)
 
 
 ### Rules
