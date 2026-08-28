@@ -1,6 +1,7 @@
-**Denne mappen brukes til å legge til dokumentasjon som**
 
-* presentasjoner
-* tegninger
-* oppgavebeskrivelser
-* diverse referater for offentligheten
+**This Folder is used to add documentation such as**
+
+* Presentations
+* Technical Drawings
+* Taskdescriptions
+* Diverse public references
