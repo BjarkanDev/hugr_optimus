@@ -44,11 +44,21 @@ To perform the fork, follow the steps below:
 
 ![Start by clicking on the dropdown next to the fork button](figures/fork_step1.png)
 
+Start by clicking on the dropdown next to the fork button.
 
 ![Click the create new fork button](figures/fork_step2.png)
 
+Click the create new fork button to create a new fork local to your GitHub user.
 
 ![Leave everything as standard and click create](figures/fork_step3.png)
+
+Click "Create fork" again to create the fork, leave every input as standard, no need to change anything.
+
+Congrats! You now have a local fork of the main repository, ready to do with as you please!
+
+#### Step 3 - Clone the repository
+
+To interact with the code on your local computer you must clone your fork to your computer. Cloning is typically done in two ways, through `HTTPS` or via `SSH`. 
 
 
 ### Rules
