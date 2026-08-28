@@ -6,7 +6,7 @@ The Hugr Optimus is a fully autonomous surface vessel, i.e. Autonomous Boat, bui
 
 We are from the University of Agder, and open for all students in Agder.
 
-## Folder Overview
+## Overview
 
 ```
 hugr_optimus
