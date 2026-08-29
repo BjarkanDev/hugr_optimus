@@ -3,9 +3,7 @@
 * Presentations
 * Technical Drawings
 * Taskdescriptions
-<<<<<<< HEAD
 * Diverse public references
-=======
 * Pin Maps
 * Schematics
 * Diverse public references
