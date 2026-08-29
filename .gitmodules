@@ -1,6 +1,3 @@
-[submodule "external_dependencies/joystick_drivers"]
-	path = external_dependencies/joystick_drivers
-	url = https://github.com/ros-drivers/joystick_drivers.git
 [submodule "Dependencies/joystick_drivers"]
 	path = Dependencies/joystick_drivers
 	url = https://github.com/ros-drivers/joystick_drivers.git
