@@ -12,6 +12,7 @@ We are from the University of Agder, and open for all students in Agder.
 hugr_optimus
 ├─ Documentations - Tasks, schematics, datasheets, etc..
 ├─ Misc           - Code examples: ROS2 in practice
-├─ optimus_ws     - Main workspace for Hugr Optimus
-└─ Templates      - ROS2 templates for different frameworks
+├─ Templates      - ROS2 templates for different frameworks
+├─ Dependencies   - External dependencies
+└─ optimus_ws     - Main workspace for Hugr Optimus
 ```
