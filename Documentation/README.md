@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-**This Folder is used to add documentation such as**
-=======
 # This folder is used to add documentation such as
->>>>>>> e9ea203 (changed names and updated readme)
 
 * Presentations
 * Technical Drawings
@@ -30,4 +26,4 @@
 
 [AutoDrone - rules and tasks](https://autodrone.no/files/AutoDrone2026_Rules&TaskDescription.pdf)
 
-[GIT-guide](https://betauia.net/guides/git/)>>>>>>> e9ea203 (changed names and updated readme)
+[GIT-guide](https://betauia.net/guides/git/)
