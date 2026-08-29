@@ -20,7 +20,9 @@ After ROS2 is sourced and workspace is built, source the workspace.
 source install/setup.bash
 ```
 
-You can also build a specific package with.
+## Tips
+
+Build a specific package with.
 
 ```bash
 colcon build --packages-select <package-name>
