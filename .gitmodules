@@ -1,0 +1,3 @@
+[submodule "Dependencies/joystick_drivers"]
+	path = Dependencies/joystick_drivers
+	url = https://github.com/ros-drivers/joystick_drivers.git
