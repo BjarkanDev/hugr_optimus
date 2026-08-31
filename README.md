@@ -81,7 +81,10 @@ In order to develop code through the Docker Container, you will need to boot it 
 
 Then run the next sequence of code as long as you're in the root of the repository folder:
 
-`docker run -it -d --name optimus-dev -v $(pwd)/optimus_ws/src:/optimus_ws/src ros2-jazzy-dev bash`
+`docker run -it -d \
+  --name optimus-dev \
+  -v $(pwd)/optimus_ws/src:/home/ros/optimus_ws/src \
+  ros2-jazzy-dev bash`
 
 You might need to perform the following commands to be able to run the container:
 
@@ -91,7 +94,25 @@ You might need to perform the following commands to be able to run the container
 
 When you're going to develop on your forked repository, it is important that you are connected to the standardized Docker container environment to avoid cross-platform contamination and avoiding problems of having some tools work but not others. 
 
-After you've booted up the container you may access it through [VSCode](https://code.visualstudio.com/download?_exp_download=fb315fc982) by adding the Docker extension to VSCode and then clicking the blue arrows in the bottom left:
+After you've booted up the container you may access it through [VSCode](https://code.visualstudio.com/download?_exp_download=fb315fc982) by adding the Docker extension to VSCode and then clicking the arrows in the bottom left:
+
+![Click the two arrown on bottom left](documentation/figures/vs_1.png)
+
+You must then attach to the running container:
+
+![Attach to running container](documentation/figures/vs_2.png)
+
+Choose the `/optimus_dev` container for development:
+
+![Choose correct container](documentation/figures/vs_3.png)
+
+You will see you're in a container when the arrows in the bottom left turn blue and the explorer highlights the source directory of the container as displayed in red here:
+
+![Display of container environment](documentation/figures/vs_4.png)
+
+When you're in the container environment you may alter code and develop code as you see fit, however to push the changes you've made unto your forked repository, you must exit the remote connection by clicking on the blue arrows in the bottom left and clicking the `close remote connection` butoon on the explorer:
+
+![Close remote connection](documentation/figures/vs_5.png)
 
 
 ### Rules
