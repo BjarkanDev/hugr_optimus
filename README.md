@@ -83,7 +83,17 @@ Then run the next sequence of code, but make sure to exchange the `/path/to/host
 
 `docker run -it -d --name optimus-dev -v /path/to/host/src:/home/ros/optimus_ws/src ros2-jazzy-dev bash`
 
- 
+You might need to perform the following commands to be able to run the container:
+
+`sudo usermod -aG docker $USER && newgrp docker` 
+
+#### Step 5 - Git and Development
+
+When you're going to develop on your forked repository, it is important that you are connected to the standardized Docker container environment to avoid cross-platform contamination and avoiding problems of having some tools work but not others. 
+
+After you've booted up the container you may access it through [VSCode](https://code.visualstudio.com/download?_exp_download=fb315fc982) by adding the Docker extension to VSCode and then clicking the blue arrows in the bottom left:
+
+
 ### Rules
 
 ---
