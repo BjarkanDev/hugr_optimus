@@ -34,42 +34,56 @@ You may download Docker natively on your computer for your specific Operating Sy
 - [Docker Desktop - Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
 - [Docker Desktop - Linux](https://docs.docker.com/desktop/setup/install/linux/)
 
-Want to know more about what Docker is and how it works? Check out [this link](https://docs.docker.com/get-started/docker-overview/).
+Want to know more about what Docker is and how it works? Check out [this link](https://docs.docker.com/get-started/docker-overview/). If you are a Windows user you will have to install WSL2 and run Ubuntu 24.04 LTS on it there. To install WSL2 follow [this link](https://learn.microsoft.com/en-us/windows/wsl/install). 
 
 #### Step 2 - Fork the repository
 
-In order to make contributions towards the main code repository you will need to fork the main repository to your local GitHub user. In this way, when you want to merge your code with the main repository you will create a Pull Request (PR), which in turn will automatically triger a Continous Integration (CI) pipeline which runs various tests to verify your code is valid and able to be merged without causing major issues. 
+In order to make contributions towards the main code repository you will need to fork the main repository to your local GitHub user. In this way, when you want to merge your code with the main repository you will create a Pull Request (PR), which in turn will automatically trigger a Continous Integration (CI) pipeline which runs various tests to verify your code is valid and able to be merged without causing major issues. 
 
 To perform the fork, follow the steps below:
 
-![Start by clicking on the dropdown next to the fork button](figures/fork_step1.png)
+--- 
 
 Start by clicking on the dropdown next to the fork button.
-
-![Click the create new fork button](figures/fork_step2.png)
+![Start by clicking on the dropdown next to the fork button](documentation/figures/fork_step1.png)
 
 Click the create new fork button to create a new fork local to your GitHub user.
-
-![Leave everything as standard and click create](figures/fork_step3.png)
+![Click the create new fork button](documentation/figures/fork_step2.png)
 
 Click "Create fork" again to create the fork, leave every input as standard, no need to change anything.
+![Leave everything as standard and click create](documentation/figures/fork_step3.png)
 
 Congrats! You now have a local fork of the main repository, ready to do with as you please!
 
 #### Step 3 - Clone the repository
 
-To interact with the code on your local computer you must clone your fork to your computer. Cloning is typically done in two ways, through `HTTPS` or via `SSH`. 
-![Click the code dropdown button](figures/clone_step1.png)
+To interact with the code on your local computer you must clone your fork to your computer. Cloning is typically done in two ways, through `HTTPS` or via `SSH`.
+
+---
 
 Click the code dropdown button.
+![Click the code dropdown button](documentation/figures/clone_step1.png)
 
-![You may copy from either HTTPS](figures/clone_step2.png)
 
 You may copy from either HTTPS...
+![You may copy from either HTTPS](documentation/figures/clone_step2.png)
 
-![Or SSH](figures/clone_step3.png)
+Or from SSH.
+![Or SSH](documentation/figures/clone_step3.png)
 
-Or from SSH. If you're going to utilize SSH, make sure to add your SSH key to your GitHub profile with read/write permissions. To get more familiar with SSH, learn how to generate a key and add it to your profile, follow [this link](https://docs.github.com/en/authentication/connecting-to-github-with-ssh). 
+If you're going to utilize SSH, make sure to add your SSH key to your GitHub profile with read/write permissions. To get more familiar with SSH, learn how to generate a key and add it to your profile, follow [this link](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
+
+#### Step 4 - Run the Docker Container
+
+In order to develop code through the Docker Container, you will need to boot it before each coding session. Run the following code in your terminal (Git Bash, Linux Terminal etc.) in order to boot up the container. Make sure you're standing in the repository folder when your run the container!
+
+`docker build -t ros2-jazzy-dev .`
+
+Then run the next sequence of code, but make sure to exchange the `/path/to/host/src` with the actual path to the repository `src`:
+
+`docker run -it -d --name optimus-dev -v /path/to/host/src:/home/ros/optimus_ws/src ros2-jazzy-dev bash`
+
+ 
 ### Rules
 
 ---
