@@ -10,6 +10,17 @@ We are from the University of Agder, and open for all students in Agder.
 
 In order to contribute to this repository, please read the information and guidelines below.
 
+## Overview
+
+```tree
+hugr_optimus
+├─ dependencies         - External dependencies
+├─ documentation        - Tasks, schematics, datasheets, etc..
+└─ optimus_ws/src/      - Main workspace for Hugr Optimus
+    ├─ misc             - Code examples: ROS2 in practice
+    └─ templates        - ROS2 templates for different frameworks 
+
+```
 ---
 
 ### Tech Stack

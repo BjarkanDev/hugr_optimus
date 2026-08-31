@@ -39,3 +39,11 @@ ehthumbs.db
 
 # Temporary or local notes
 *.local
+
+# ROS 2-generated files
+**/install/
+**/log/
+**/build/
+
+# VS Code settings
+/.vscode/
