@@ -110,13 +110,15 @@ You will see you're in a container when the arrows in the bottom left turn blue 
 
 ![Display of container environment](documentation/figures/vs_4.png)
 
-When you're in the container environment you may alter code and develop code as you see fit, however to push the changes you've made unto your forked repository, you must exit the remote connection by clicking on the blue arrows in the bottom left and clicking the `close remote connection` butoon on the explorer:
+When you're in the container environment you may alter code and develop code as you see fit, however to push the changes you've made unto your forked repository, you must exit the remote connection by clicking on the blue arrows in the bottom left and clicking the `close remote connection` button on the explorer:
 
 ![Close remote connection](documentation/figures/vs_5.png)
 
+When you're working with Git, make sure to sort out any git merge conflicts internally within your fork and your team. This can be done by fetching the new head of the development branch of your repository and performing a rebase before starting development and after performing development, and then comitting and pushing your code. If you have any questions regarding Git, consult one of the senior software members or you may also utilize an LLM if the conflicts are minor.  
 
 ### Rules
 
+...
 ---
 
 > Maintained by SeaBotics Student Association
