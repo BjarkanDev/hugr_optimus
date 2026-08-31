@@ -1,10 +1,11 @@
+# Ubuntu 24.04 LTS image with ROS 2 Jazzy
 FROM osrf/ros:jazzy-desktop
 
-# Set environment variables
-ENV DEBIAN_FRONTEND=noninteractive
+# Container environment variables
+ARG DEBIAN_FRONTEND=noninteractive
 ENV ROS_DISTRO=jazzy
 
-# Install common development tools and utilities
+# Install of necessary packages for development (open for modification later, ask admin for extended list)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     git \
@@ -17,11 +18,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Create a non-root user (default VS Code devcontainer practice)
+# User in environment setup
 ARG USERNAME=ros
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
+## User permissions in container
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && apt-get update \
@@ -30,13 +32,13 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
 # Setup workspace structure folder
-ENV RWS_DIR=/home/$USERNAME/ros2_ws
+ENV RWS_DIR=/home/$USERNAME/optimus_ws
 RUN mkdir -p $RWS_DIR/src
 WORKDIR $RWS_DIR
 
-# Switch to non-root user
+# Switch to non-root user, less chance of having user messing up within container
 USER $USERNAME
 
 # Automatically source ROS 2 and workspace on bash startup
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc \
-    && echo "if [ -f /home/$USERNAME/ros2_ws/install/setup.bash ]; then source /home/$USERNAME/ros2_ws/install/setup.bash; fi" >> /home/$USERNAME/.bashrc
+    && echo "if [ -f /home/$USERNAME/optimus_ws/install/setup.bash ]; then source /home/$USERNAME/optimus_ws/install/setup.bash; fi" >> /home/$USERNAME/.bashrc
