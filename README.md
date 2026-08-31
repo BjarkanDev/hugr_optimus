@@ -79,9 +79,9 @@ In order to develop code through the Docker Container, you will need to boot it 
 
 `docker build -t ros2-jazzy-dev .`
 
-Then run the next sequence of code, but make sure to exchange the `/path/to/host/src` with the actual path to the repository `src`:
+Then run the next sequence of code as long as you're in the root of the repository folder:
 
-`docker run -it -d --name optimus-dev -v /path/to/host/src:/home/ros/optimus_ws/src ros2-jazzy-dev bash`
+`docker run -it -d --name optimus-dev -v $(pwd)/optimus_ws/src:/optimus_ws/src ros2-jazzy-dev bash`
 
 You might need to perform the following commands to be able to run the container:
 
