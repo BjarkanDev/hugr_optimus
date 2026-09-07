@@ -1,0 +1,15 @@
+name: SeaBotics Testing Suite Action
+run-name: ${{ github.actor }} is testing code for compliance
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test_suite:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "Hello Test"
+
