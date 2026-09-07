@@ -13,11 +13,8 @@ jobs:
     container: 
       image: rostooling/setup-ros-docker:ubuntu-noble-latest
     steps:
-      - name: Checkout repository 
-        uses: actions/checkout@v6
-      
       - name: Build and Test ROS 2 Workspace
-        uses: ros_tooling/action-ros-ci@v0.4
+        uses: ros_tooling/action-ros-ci@v0.4.8
         with:
           target-ros2-distro: jazzy
 
