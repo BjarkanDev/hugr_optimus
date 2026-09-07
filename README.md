@@ -16,10 +16,9 @@ In order to contribute to this repository, please read the information and guide
 hugr_optimus
 ├─ dependencies         - External dependencies
 ├─ documentation        - Tasks, schematics, datasheets, etc..
+├─ misc                 - Code examples: ROS2 in practice
+├─templates             - ROS2 templates for different frameworks 
 └─ optimus_ws/src/      - Main workspace for Hugr Optimus
-    ├─ misc             - Code examples: ROS2 in practice
-    └─ templates        - ROS2 templates for different frameworks 
-
 ```
 ---
 
