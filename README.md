@@ -14,10 +14,10 @@ In order to contribute to this repository, please read the information and guide
 
 ```tree
 hugr_optimus
-├─ dependencies         - External dependencies
-├─ documentation        - Tasks, schematics, datasheets, etc..
-├─ misc                 - Code examples: ROS2 in practice
-├─templates             - ROS2 templates for different frameworks 
+├─ Dependencies         - External dependencies
+├─ Documentation        - Tasks, schematics, datasheets, etc..
+├─ Misc                 - Code examples: ROS2 in practice
+├─ Templates            - ROS2 templates for different frameworks 
 └─ optimus_ws/src/      - Main workspace for Hugr Optimus
 ```
 ---
@@ -55,13 +55,13 @@ To perform the fork, follow the steps below:
 --- 
 
 Start by clicking on the dropdown next to the fork button.
-![Start by clicking on the dropdown next to the fork button](documentation/figures/fork_step1.png)
+![Start by clicking on the dropdown next to the fork button](Documentation/figures/fork_step1.png)
 
 Click the create new fork button to create a new fork local to your GitHub user.
-![Click the create new fork button](documentation/figures/fork_step2.png)
+![Click the create new fork button](Documentation/figures/fork_step2.png)
 
 Click "Create fork" again to create the fork, leave every input as standard, no need to change anything.
-![Leave everything as standard and click create](documentation/figures/fork_step3.png)
+![Leave everything as standard and click create](Documentation/figures/fork_step3.png)
 
 Congrats! You now have a local fork of the main repository, ready to do with as you please!
 
@@ -72,14 +72,14 @@ To interact with the code on your local computer you must clone your fork to you
 ---
 
 Click the code dropdown button.
-![Click the code dropdown button](documentation/figures/clone_step1.png)
+![Click the code dropdown button](Documentation/figures/clone_step1.png)
 
 
 You may copy from either HTTPS...
-![You may copy from either HTTPS](documentation/figures/clone_step2.png)
+![You may copy from either HTTPS](Documentation/figures/clone_step2.png)
 
 Or from SSH.
-![Or SSH](documentation/figures/clone_step3.png)
+![Or SSH](Documentation/figures/clone_step3.png)
 
 If you're going to utilize SSH, make sure to add your SSH key to your GitHub profile with read/write permissions. To get more familiar with SSH, learn how to generate a key and add it to your profile, follow [this link](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
@@ -106,23 +106,23 @@ When you're going to develop on your forked repository, it is important that you
 
 After you've booted up the container you may access it through [VSCode](https://code.visualstudio.com/download?_exp_download=fb315fc982) by adding the Docker extension to VSCode and then clicking the arrows in the bottom left:
 
-![Click the two arrown on bottom left](documentation/figures/vs_1.png)
+![Click the two arrown on bottom left](Documentation/figures/vs_1.png)
 
 You must then attach to the running container:
 
-![Attach to running container](documentation/figures/vs_2.png)
+![Attach to running container](Documentation/figures/vs_2.png)
 
 Choose the `/optimus_dev` container for development:
 
-![Choose correct container](documentation/figures/vs_3.png)
+![Choose correct container](Documentation/figures/vs_3.png)
 
 You will see you're in a container when the arrows in the bottom left turn blue and the explorer highlights the source directory of the container as displayed in red here:
 
-![Display of container environment](documentation/figures/vs_4.png)
+![Display of container environment](Documentation/figures/vs_4.png)
 
 When you're in the container environment you may alter code and develop code as you see fit, however to push the changes you've made unto your forked repository, you must exit the remote connection by clicking on the blue arrows in the bottom left and clicking the `close remote connection` button on the explorer:
 
-![Close remote connection](documentation/figures/vs_5.png)
+![Close remote connection](Documentation/figures/vs_5.png)
 
 When you're working with Git, make sure to sort out any git merge conflicts internally within your fork and your team. This can be done by fetching the new head of the development branch of your repository and performing a rebase before starting development and after performing development, and then comitting and pushing your code. If you have any questions regarding Git, consult one of the senior software members or you may also utilize an LLM if the conflicts are minor.  
 
