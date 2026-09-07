@@ -10,6 +10,15 @@ on:
 jobs:
   test_suite:
     runs-on: ubuntu-24.04
+    container: 
+      image: osrf/ros:jazzy-desktop 
     steps:
-      - run: echo "Hello Test"
+      - name: Checkout repository 
+        uses: actions/checkout@v6
+      
+      - name: Build and Test ROS 2 Workspace
+        uses: ros_tooling/action-ros-ci@v0.4
+        with:
+          target-ros2-distro: jazzy
+
 
