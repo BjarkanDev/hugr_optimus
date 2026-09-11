@@ -30,7 +30,7 @@ hugr_optimus
 - ROS 2 Jazzy
 - C/C++ & Python
 
-In addition to these basics you may find downloading an IDE to be preferable for development through the project Docker container, preferably Visual Studio Code (VSC) due to its Docker integration. Hardware and Software technology and interfacing overviews are located in `dokumentasjon/`. You may follow the setup steps below in order to set up your computer. 
+In addition to these basics you may find downloading an IDE to be preferable for development through the project Docker container, preferably Visual Studio Code (VSC) due to its Docker integration. Hardware and Software technology and interfacing overviews are located in `Documentation/`. You may follow the setup steps below in order to set up your computer. 
 
 ### Setup
 
