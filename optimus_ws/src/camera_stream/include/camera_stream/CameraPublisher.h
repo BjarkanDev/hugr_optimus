@@ -1,34 +1,43 @@
 #ifndef CAMERAPUBLISHER_H
 #define CAMERAPUBLISHER_H
 
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
+#include <cstdio>
 
-#include <iostream>
-#include <depthai/depthai.hpp>
+#include "depthai/device/Device.hpp"
+#include "depthai/pipeline/Pipeline.hpp"
+#include "depthai/pipeline/node/Camera.hpp"
+#include "depthai_bridge/BridgePublisher.hpp"
+#include "depthai_bridge/ImageConverter.hpp"
+#include "depthai_bridge/TFPublisher.hpp"
+#include "depthai_bridge/depthaiUtility.hpp"
+#include "rclcpp/node.hpp"
 
 class CameraPublisher : public rclcpp::Node
 {
 private:
-	// Camera specs
-	int width;
-	int height;
-	int fps;
-
-	// ROS2 Publishers
-	rclcpp::Publisher<std_msgs::msg:String>::SharedPtr raw_publisher;
-	rclcpp::Publisher<std_msgs::msg:String>::SharedPtr compressed_publisher;
-	//rclcpp::Publisher<std_msgs::msg:String>::SharedPtr detect_publisher;
-	
-	// Luxonis interfaces
-	std::shared_ptr<dai::Device> device;
-	dai::Pipeline pipeline;
-	auto cam;
+	int camera_width;
+	int camera_height;
+	int camera_fps;
+	std::string tfprefix;
+	auto device;
+	auto camera;
 	auto video_queue;
+	dai::Pipeline pipeline;
+	auto ros_bridge;
+	auto calibration_handler;
+	auto tf_publisher;
+	auto rgb_camera_info;
+	auto rgb_publisher;
+
+	void setup_camera();
+	void setup_ros2();
+	void setup_pipeline();	
 		
 public:
-	CameraPublisher();
+	CameraPublisher() : Node("camera_publisher"){};
 	~CameraPublisher();
+
+	void init();
 };
 
 #endif
