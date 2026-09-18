@@ -18,7 +18,7 @@ hugr_optimus
 ├─ Documentation        - Tasks, schematics, datasheets, etc..
 ├─ Misc                 - Code examples: ROS2 in practice
 ├─ Templates            - ROS2 templates for different frameworks 
-└─ optimus_ws/src/      - Main workspace for Hugr Optimus
+└─ optimus_ws/src/      - Main workspace for Hugr Optimus (code to run on SBC)
 ```
 ---
 
@@ -30,7 +30,7 @@ hugr_optimus
 - ROS 2 Jazzy
 - C/C++ & Python
 
-In addition to these basics you may find downloading an IDE to be preferable for development through the project Docker container, preferably Visual Studio Code (VSC) due to its Docker integration. Hardware and Software technology and interfacing overviews are located in `Documentation/`. You may follow the setup steps below in order to set up your computer. 
+In addition to these basics you may find downloading an IDE to be preferable for development through the project Docker container, preferably Visual Studio Code (VSC) due to its Docker integration. Hardware and Software technology and interfacing overviews are located in `Documentation/`. You may follow the setup steps below in order to set up your computer to begin developing with the code base. 
 
 ### Setup
 
@@ -83,9 +83,11 @@ Or from SSH.
 
 If you're going to utilize SSH, make sure to add your SSH key to your GitHub profile with read/write permissions. To get more familiar with SSH, learn how to generate a key and add it to your profile, follow [this link](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
+To clone the repository to your computer, stand in the root of your `Projects/` folder and type in `git clone <link from GitHub>. You should now be able to move into your forked version of `hugr_optimus`
+
 #### Step 4 - Run the Docker Container
 
-In order to develop code through the Docker Container, you will need to boot it before each coding session. Run the following code in your terminal (Git Bash, Linux Terminal etc.) in order to boot up the container. Make sure you're standing in the repository folder when your run the container!
+In order to develop code through the Docker Container, you will need to boot it before each coding session. Run the following code in your terminal (Git Bash, Linux Terminal etc.) in order to boot up the container. Make sure you're standing in the root of the repository folder when you run the container!
 
 `docker build -t ros2-jazzy-dev .`
 
@@ -120,9 +122,11 @@ You will see you're in a container when the arrows in the bottom left turn blue 
 
 ![Display of container environment](Documentation/figures/vs_4.png)
 
-When you're in the container environment you may alter code and develop code as you see fit, however to push the changes you've made unto your forked repository, you must exit the remote connection by clicking on the blue arrows in the bottom left and clicking the `close remote connection` button on the explorer:
+When you're in the container environment you may alter code and develop code as you see fit, however to push the changes you've made unto your forked repository you must exit the remote connection by clicking on the blue arrows in the bottom left and clicking the `close remote connection` button on the explorer:
 
 ![Close remote connection](Documentation/figures/vs_5.png)
+
+You may now run your Git commands to add your edited files and push them. You may alternatively open a terminal on your computer that is not running through VSCode and utilize Git commands from there. 
 
 When you're working with Git, make sure to sort out any git merge conflicts internally within your fork and your team. This can be done by fetching the new head of the development branch of your repository and performing a rebase before starting development and after performing development, and then comitting and pushing your code. If you have any questions regarding Git, consult one of the senior software members or you may also utilize an LLM if the conflicts are minor.  
 
