@@ -3,8 +3,8 @@
 <package format="3">
   <name>neuralnetwork</name>
   <version>0.0.0</version>
-  <description>ROS 2 Jazzy package for running neural network nodes</description>
-  <maintainer email="bjornsodal@gmail.com">bjorn</maintainer>
+  <description>ROS 2 Jazzy nodes for running detection model on camera images and producing bounding boxes</description>
+  <maintainer email="bjornsodal@gmail.com">Bjørn Sødal</maintainer>
   <license>Apache-2.0</license>
   
   <depend>rclpy</depend>
