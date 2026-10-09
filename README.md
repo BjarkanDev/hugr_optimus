@@ -1,6 +1,6 @@
 # hugr_optimus
 
-The official repository for the SeaBotics Hugr Optimus. This repo is the succesor to the Hugr Primus repository for legacy code.
+The official repository for SeaBotics Hugr Optimus. This repo is the successor to the Hugr Primus repository for legacy code.
 
 The Hugr Optimus is a fully autonomous surface vessel, i.e. Autonomous Boat, built by students to compete in national and international competitions.
 
@@ -17,8 +17,11 @@ hugr_optimus
 ├─ Dependencies         - External dependencies
 ├─ Documentation        - Tasks, schematics, datasheets, etc..
 ├─ Misc                 - Code examples: ROS2 in practice
-├─ Templates            - ROS2 templates for different frameworks 
+├─ Templates            - ROS2 templates for different frameworks
+├─ init.sh              - Initialization script, downloads all system dependencies unto ASV
+├─ start.sh             - ROS node script, runs all ROS 2 nodes and launch files as bakcground processes
 └─ optimus_ws/src/      - Main workspace for Hugr Optimus (code to run on SBC)
+
 ```
 ---
 
@@ -128,7 +131,7 @@ When you're in the container environment you may alter code and develop code as 
 
 You may now run your Git commands to add your edited files and push them. You may alternatively open a terminal on your computer that is not running through VSCode and utilize Git commands from there. 
 
-When you're working with Git, make sure to sort out any git merge conflicts internally within your fork and your team. This can be done by fetching the new head of the development branch of your repository and performing a rebase before starting development and after performing development, and then comitting and pushing your code. If you have any questions regarding Git, consult one of the senior software members or you may also utilize an LLM if the conflicts are minor.  
+When you're working with Git, make sure to sort out any git merge conflicts internally within your fork and your team. This can be done by fetching the new head of the development branch of your repository and performing a rebase before starting development and after performing development, and then comitting and pushing your code. If you have any questions regarding Git, consult one of the senior software members or you may utilize an LLM if conflicts or questions are minor.  
 
 ### Rules
 
