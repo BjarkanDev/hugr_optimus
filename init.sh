@@ -40,6 +40,8 @@ source /opt/ros/jazzy/setup.bash
 echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 
 # Depthai ROS2
+sudo python3 -m pip install --upgrade pip
+sudo python3 -m pip install depthai
 sudo apt install ros2-testing-apt-source
 sudo apt update
 sudo apt install ros-$ROS_DISTRO-depthai-ros-v3
