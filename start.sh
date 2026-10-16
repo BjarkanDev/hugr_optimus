@@ -8,12 +8,7 @@ source install/setup.bash
 echo "Starting camera driver..."
 # Run the working standalone node in background with output redirected to a log file for debugging
 ros2 run depthai_ros_driver_v3 driver_node --ros-args \
-  -p camera.i_pipeline_type:=RGBD \
-  -p rgb.i_publish_topic:=true \
-  -p rgb.i_enable_lazy_publisher:=false \
-  -p stereo.i_publish_topic:=true \
-  -p stereo.i_enable_lazy_publisher:=false > ~/camera_driver.log 2>&1 &
-
+  --params-file /path/to/your/camera.yaml > ~/camera_driver.log 2>&1 &
 sleep 3
 
 echo "Starting neural network nodes..."
