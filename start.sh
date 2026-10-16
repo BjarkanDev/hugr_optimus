@@ -8,7 +8,7 @@ source install/setup.bash
 echo "Starting camera driver..."
 # Run the working standalone node in background with output redirected to a log file for debugging
 ros2 run depthai_ros_driver_v3 driver_node --ros-args \
-  --params-file /path/to/your/camera.yaml > ~/camera_driver.log 2>&1 &
+  --params-file optimus_ws/camera.yaml > ~/camera_driver.log 2>&1 &
 sleep 3
 
 echo "Starting neural network nodes..."
